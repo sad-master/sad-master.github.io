@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="sad-master">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ES61. let 和 const 命令 let  无变量提升，是一个块级作用域，不能重复声明   const  无变量提升，是一个块级作用域，不能重复声明 声明常量，一旦声明，不能修改值 声明对象时，不能直接修改对象，但是可以修改对象的属性值   建议：在默认情况下使用const，只有在需要修改变量时才使用let。  2.模板字符串   3.强大函数 默认值  默认值可以是函数  剩余参数：使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6">
+<meta property="og:url" content="http://example.com/2024/10/19/ES6/index.html">
+<meta property="og:site_name" content="sad-master">
+<meta property="og:description" content="ES61. let 和 const 命令 let  无变量提升，是一个块级作用域，不能重复声明   const  无变量提升，是一个块级作用域，不能重复声明 声明常量，一旦声明，不能修改值 声明对象时，不能直接修改对象，但是可以修改对象的属性值   建议：在默认情况下使用const，只有在需要修改变量时才使用let。  2.模板字符串   3.强大函数 默认值  默认值可以是函数  剩余参数：使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/ES6-str.png">
+<meta property="og:image" content="http://example.com/images/ES6-f1.png">
+<meta property="og:image" content="http://example.com/images/ES6-f2.png">
+<meta property="og:image" content="http://example.com/images/ES6-f3.png">
+<meta property="og:image" content="http://example.com/images/ES6-f4.png">
+<meta property="og:image" content="http://example.com/images/ES6-f5.png">
+<meta property="og:image" content="http://example.com/images/ES6-jg1.png">
+<meta property="og:image" content="http://example.com/images/ES6-jg2.png">
+<meta property="og:image" content="http://example.com/images/ES6-obj1.png">
+<meta property="og:image" content="http://example.com/images/ES6-obj2.png">
+<meta property="og:image" content="http://example.com/images/ES6-sy1.png">
+<meta property="og:image" content="http://example.com/images/ES6-sy2.png">
+<meta property="og:image" content="http://example.com/images/ES6-set1.png">
+<meta property="og:image" content="http://example.com/images/ES6-set2.png">
+<meta property="og:image" content="http://example.com/images/ES6-map1.png">
+<meta property="og:image" content="http://example.com/images/ES6-arr1.png">
+<meta property="og:image" content="http://example.com/images/ES6-arr2.png">
+<meta property="og:image" content="http://example.com/images/ES6-arr3.png">
+<meta property="og:image" content="http://example.com/images/ES6-arr4.png">
+<meta property="og:image" content="http://example.com/images/ES6-arr5.png">
+<meta property="og:image" content="http://example.com/images/ES6-dd1.png">
+<meta property="og:image" content="http://example.com/images/ES6-yield1.png">
+<meta property="og:image" content="http://example.com/images/ES6-yield2.png">
+<meta property="og:image" content="http://example.com/images/ES6-async1.png">
+<meta property="og:image" content="http://example.com/images/ES6-class1.png">
+<meta property="og:image" content="http://example.com/images/ES6-class2.png">
+<meta property="og:image" content="http://example.com/images/ES6-class3.png">
+<meta property="article:published_time" content="2024-10-19T02:56:32.000Z">
+<meta property="article:modified_time" content="2024-10-20T11:43:18.012Z">
+<meta property="article:author" content="sad-master">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/ES6-str.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ES6 - sad-master</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"busuanzi":{"app_id":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","app_key":"Qckx6EOeKbmUAGqSsKBuoep7","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sad-master</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ES6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-19 10:56" pubdate>
+          2024年10月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          993 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ES6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><h3 id="1-let-和-const-命令"><a href="#1-let-和-const-命令" class="headerlink" title="1. let 和 const 命令"></a>1. let 和 const 命令</h3><ul>
+<li>let <ul>
+<li>无变量提升，是一个块级作用域，不能重复声明</li>
+</ul>
+</li>
+<li>const <ul>
+<li>无变量提升，是一个块级作用域，不能重复声明</li>
+<li>声明常量，一旦声明，不能修改值</li>
+<li>声明对象时，不能直接修改对象，但是可以修改对象的属性值</li>
+</ul>
+</li>
+<li>建议：在默认情况下使用const，只有在需要修改变量时才使用let。</li>
+</ul>
+<h3 id="2-模板字符串"><a href="#2-模板字符串" class="headerlink" title="2.模板字符串"></a>2.模板字符串</h3><ul>
+<li><img src="/images/ES6-str.png" srcset="/img/loading.gif" lazyload alt="模板字符串"></li>
+</ul>
+<h3 id="3-强大函数"><a href="#3-强大函数" class="headerlink" title="3.强大函数"></a>3.强大函数</h3><ul>
+<li><p>默认值<br><img src="/images/ES6-f1.png" srcset="/img/loading.gif" lazyload alt="默认值"></p>
+</li>
+<li><p>默认值可以是函数<br><img src="/images/ES6-f2.png" srcset="/img/loading.gif" lazyload alt="默认值函数"></p>
+</li>
+<li><p>剩余参数：使用…keys参数，可以获取函数中余下的参数<br><img src="/images/ES6-f3.png" srcset="/img/loading.gif" lazyload alt="剩余参数"></p>
+</li>
+<li><p>扩展运算符：将一个数组进行分割，并将各个项作为分离参数传给函数<br><img src="/images/ES6-f4.png" srcset="/img/loading.gif" lazyload alt="扩展运算符"></p>
+</li>
+<li><p>箭头函数：(&#x3D;&gt;)可以简化函数定义，并且不绑定this，可以用作回调函数<br><img src="/images/ES6-f5.png" srcset="/img/loading.gif" lazyload alt="箭头函数"></p>
+</li>
+</ul>
+<h3 id="4-解构赋值"><a href="#4-解构赋值" class="headerlink" title="4.解构赋值"></a>4.解构赋值</h3><ul>
+<li>对赋值运算符的一种扩展<br><img src="/images/ES6-jg1.png" srcset="/img/loading.gif" lazyload alt="解构赋值"></li>
+</ul>
+<p><img src="/images/ES6-jg2.png" srcset="/img/loading.gif" lazyload alt="解构赋值"></p>
+<h3 id="5-扩展对象功能"><a href="#5-扩展对象功能" class="headerlink" title="5.扩展对象功能"></a>5.扩展对象功能</h3><ul>
+<li><p><img src="/images/ES6-obj1.png" srcset="/img/loading.gif" lazyload alt="扩展对象功能"></p>
+</li>
+<li><p><img src="/images/ES6-obj2.png" srcset="/img/loading.gif" lazyload alt="扩展对象功能"></p>
+</li>
+</ul>
+<h3 id="6-Symbol对象"><a href="#6-Symbol对象" class="headerlink" title="6.Symbol对象"></a>6.Symbol对象</h3><ul>
+<li><p>一种新的原始数据类型，是通过Symbol函数生成的</p>
+</li>
+<li><p>它是一种独一无二的值，可以作为对象属性的标识符，可以保证对象属性的私密性</p>
+</li>
+<li><p>最大用途，定义对象的私有变量</p>
+</li>
+<li><p><img src="/images/ES6-sy1.png" srcset="/img/loading.gif" lazyload alt="Symbol对象"></p>
+</li>
+<li><p><img src="/images/ES6-sy2.png" srcset="/img/loading.gif" lazyload alt="获取Symbol声明的属性名"></p>
+</li>
+</ul>
+<h3 id="7-Set数据结构"><a href="#7-Set数据结构" class="headerlink" title="7.Set数据结构"></a>7.Set数据结构</h3><ul>
+<li>Set：类似数组，但是成员的值都是唯一的，没有重复的值</li>
+<li>Map：类似对象，是一对键值对的集合，类似于哈希表</li>
+<li><img src="/images/ES6-set1.png" srcset="/img/loading.gif" lazyload alt="Set"></li>
+<li><img src="/images/ES6-set2.png" srcset="/img/loading.gif" lazyload alt="Set转化为数组"></li>
+</ul>
+<h3 id="8-Map数据结构"><a href="#8-Map数据结构" class="headerlink" title="8.Map数据结构"></a>8.Map数据结构</h3><ul>
+<li>Map：类似对象，是一对键值对的集合，类似于哈希表</li>
+<li><img src="/images/ES6-map1.png" srcset="/img/loading.gif" lazyload alt="Map"></li>
+</ul>
+<h3 id="9-数组的扩展"><a href="#9-数组的扩展" class="headerlink" title="9.数组的扩展"></a>9.数组的扩展</h3><ul>
+<li>from()：将类数组对象转换为数组</li>
+<li>of()：将一组值转换为数组</li>
+<li>copyWithin()：浅复制数组的一部分到同一数组中的另一个位置</li>
+<li>find()：返回数组中满足条件的第一个元素</li>
+<li>findIndex()：返回数组中满足条件的第一个元素的索引</li>
+<li>keys，values，entries()：返回数组的键名，键值，键值对</li>
+<li><img src="/images/ES6-arr1.png" srcset="/img/loading.gif" lazyload alt="数组的扩展"></li>
+<li><img src="/images/ES6-arr2.png" srcset="/img/loading.gif" lazyload alt="数组的扩展"></li>
+<li><img src="/images/ES6-arr3.png" srcset="/img/loading.gif" lazyload alt="数组的扩展"></li>
+<li><img src="/images/ES6-arr4.png" srcset="/img/loading.gif" lazyload alt="数组的扩展"></li>
+<li><img src="/images/ES6-arr5.png" srcset="/img/loading.gif" lazyload alt="数组的扩展"></li>
+</ul>
+<h3 id="10-迭代器"><a href="#10-迭代器" class="headerlink" title="10.迭代器"></a>10.迭代器</h3><ul>
+<li>一种接口，用来访问集合对象的元素，通过Symbol.iterator属性来访问，通过next()方法来获取下一个元素</li>
+<li>用于遍历数组结构的指针</li>
+<li><img src="/images/ES6-dd1.png" srcset="/img/loading.gif" lazyload alt="迭代器"></li>
+</ul>
+<h3 id="11-生成器"><a href="#11-生成器" class="headerlink" title="11.生成器"></a>11.生成器</h3><ul>
+<li>一种特殊的函数，使用yield关键字来挂起函数</li>
+<li>为了改变执行流程，可以暂停函数的执行，并恢复函数的执行</li>
+<li>一般用于异步编程</li>
+<li><img src="/images/ES6-yield1.png" srcset="/img/loading.gif" lazyload alt="生成器"></li>
+<li><img src="/images/ES6-yield2.png" srcset="/img/loading.gif" lazyload alt="生成器"></li>
+</ul>
+<h3 id="12-Promise对象"><a href="#12-Promise对象" class="headerlink" title="12.Promise对象"></a>12.Promise对象</h3><ul>
+<li>相当于一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果</li>
+<li>各种异步操作都可以用同样的方法进行处理</li>
+<li>特点：<ul>
+<li>对象的状态不受外界影响：pending（进行中），fulfilled（已成功），rejected（已失败）</li>
+<li>一旦状态改变，就不会再变，任何时候都可以得到这个结果</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-async-await"><a href="#13-async-await" class="headerlink" title="13.async&#x2F;await"></a>13.async&#x2F;await</h3><ul>
+<li>异步编程的终极解决方案</li>
+<li>async会返回一个Promise对象，是Generator函数的语法糖</li>
+<li>await关键字后面可以跟Promise对象，表示等待Promise对象的状态变为resolved，然后才会继续执行后面的语句</li>
+<li>异步函数返回的是Promise对象，可以使用then()方法添加回调函数</li>
+<li><img src="/images/ES6-async1.png" srcset="/img/loading.gif" lazyload alt="async/await"></li>
+</ul>
+<h3 id="14-Class"><a href="#14-Class" class="headerlink" title="14.Class"></a>14.Class</h3><ul>
+<li><p>ES6中引入的新语法，用来定义类</p>
+</li>
+<li><p>类可以用来创建自定义的构造函数，实例属性和方法</p>
+</li>
+<li><p>类可以继承其他类，可以实现多态</p>
+</li>
+<li><p>类可以实现接口，可以对类的实例进行类型检查</p>
+</li>
+<li><p><img src="/images/ES6-class1.png" srcset="/img/loading.gif" lazyload alt="Class"></p>
+</li>
+<li><p>继承：extends关键字后面可以跟父类，子类会自动获得父类的属性和方法</p>
+</li>
+<li><p><img src="/images/ES6-class2.png" srcset="/img/loading.gif" lazyload alt="继承"></p>
+</li>
+<li><p><img src="/images/ES6-class3.png" srcset="/img/loading.gif" lazyload alt="继承"></p>
+</li>
+</ul>
+<h3 id="15-模块化"><a href="#15-模块化" class="headerlink" title="15.模块化"></a>15.模块化</h3><ul>
+<li>模块化是指将一个大程序分解成小的、可管理的、可复用的模块</li>
+<li>ES6模块化方案，主要有以下几种：<ul>
+<li>CommonJS：模块化规范，主要用于服务器端</li>
+<li>AMD：异步模块定义，主要用于浏览器端</li>
+<li>UMD：通用模块定义，同时支持AMD和CommonJS</li>
+<li>ES6模块：模块化方案，主要用于浏览器端和Node.js</li>
+<li>export：用于导出模块成员</li>
+<li>import：用于导入模块成员</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ES6</div>
+      <div>http://example.com/2024/10/19/ES6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sad-master</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/21/Promise/" title="Promise">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Promise</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/19/JS-high/" title="JS_high">
+                        <span class="hidden-mobile">JS_high</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","appKey":"Qckx6EOeKbmUAGqSsKBuoep7","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

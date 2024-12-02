@@ -1,0 +1,1283 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="sad-master">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VUE21.初识Vue 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象 root容器里面的代码一九符合html规范，只不过混入了一些特殊的Vue语法 root容器里的代码被称为【Vue模板】 Vue实例和容器是一一对应的 真实的开发中只有一个Vue实例，并且会配合着组件使用 中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性 一旦data中的数据发生变化，那么页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2">
+<meta property="og:url" content="http://example.com/2024/10/26/Vue2/index.html">
+<meta property="og:site_name" content="sad-master">
+<meta property="og:description" content="VUE21.初识Vue 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象 root容器里面的代码一九符合html规范，只不过混入了一些特殊的Vue语法 root容器里的代码被称为【Vue模板】 Vue实例和容器是一一对应的 真实的开发中只有一个Vue实例，并且会配合着组件使用 中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性 一旦data中的数据发生变化，那么页面">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/10/26/Vue2/Vue2-6.1.png">
+<meta property="og:image" content="http://example.com/images/Vue2-10.1.png">
+<meta property="og:image" content="http://example.com/images/Vue2-10.2.png">
+<meta property="og:image" content="http://example.com/images/Vue2-18.1.png">
+<meta property="og:image" content="http://example.com/images/Vue2-18.2.png">
+<meta property="og:image" content="http://example.com/images/Vue2-51.1.png">
+<meta property="article:published_time" content="2024-10-26T12:43:57.000Z">
+<meta property="article:modified_time" content="2024-10-31T03:42:32.095Z">
+<meta property="article:author" content="sad-master">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/10/26/Vue2/Vue2-6.1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Vue2 - sad-master</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"busuanzi":{"app_id":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","app_key":"Qckx6EOeKbmUAGqSsKBuoep7","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sad-master</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-26 20:43" pubdate>
+          2024年10月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="VUE2"><a href="#VUE2" class="headerlink" title="VUE2"></a>VUE2</h2><h3 id="1-初识Vue"><a href="#1-初识Vue" class="headerlink" title="1.初识Vue"></a>1.初识Vue</h3><ul>
+<li>想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象</li>
+<li>root容器里面的代码一九符合html规范，只不过混入了一些特殊的Vue语法</li>
+<li>root容器里的代码被称为【Vue模板】</li>
+<li>Vue实例和容器是一一对应的</li>
+<li>真实的开发中只有一个Vue实例，并且会配合着组件使用</li>
+<li>中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性</li>
+<li>一旦data中的数据发生变化，那么页面中用到该数据的地方也会自动更新</li>
+</ul>
+<hr>
+<blockquote>
+<p><code>注意区分：js表达式和js代码（语句）</code></p>
+<blockquote>
+<p><code>1.表达式：一个表达式会生成一个值，可以放在任何一个需要值的地方 </code></p>
+<blockquote>
+<p><code>(1). a </code><br><code>(2). b + 1 </code><br><code>(3). demo(1) </code><br><code>(4). x===y?&#39;a&#39;:&#39;b&#39; </code></p>
+</blockquote>
+<p><code>2.代码（语句）：</code></p>
+<blockquote>
+<p><code>(1). if(a&gt;b)</code><br><code>(2). for(let i=0;i&lt;10;i++)</code></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h3 id="2-Vue模板"><a href="#2-Vue模板" class="headerlink" title="2.Vue模板"></a>2.Vue模板</h3><ul>
+<li>插值语法：<ul>
+<li>功能：用于解析标签体内容</li>
+<li>写法：，xxx可以是任何js表达式，会自动读取到data中的所有属性</li>
+</ul>
+</li>
+<li>指令语法：<ul>
+<li>功能：用于解析标签（包括：标签属性，标签体内容，绑定事件….）</li>
+<li>举例：v-bind：herf&#x3D;”xxx”  或简写为：  ：herf&#x3D;”xxx”</li>
+<li>备注：Vue中有很多的指令，且形式都是：v-????，此处我们拿v-bind举例</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-数据绑定"><a href="#3-数据绑定" class="headerlink" title="3.数据绑定"></a>3.数据绑定</h3><ul>
+<li>v-bind:单向数据绑定</li>
+<li>v-model:双向数据绑定，只能用在表单元素上（输入类元素）<ul>
+<li>v-modle:value可以简写为v-model</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-el与data的两种写法"><a href="#4-el与data的两种写法" class="headerlink" title="4.el与data的两种写法"></a>4.el与data的两种写法</h3><ul>
+<li>el:<ul>
+<li>创建Vue实例时，可以传入el参数，指定容器元素；</li>
+<li>也可以创建v&#x3D;new Vue()，v.$mount(‘#root’)指定容器元素</li>
+</ul>
+</li>
+<li>data:<ul>
+<li>对象式</li>
+<li>函数式，组件学习后，使用函数式</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-MVVM模式"><a href="#5-MVVM模式" class="headerlink" title="5.MVVM模式"></a>5.MVVM模式</h3><ul>
+<li>Model-View-ViewModel模式</li>
+<li>Model：数据模型，即data中的数据</li>
+<li>View：视图，即页面显示的部分，由HTML模板和指令组成</li>
+<li>ViewModel：视图模型，即Vue实例，负责处理数据和视图间的交互</li>
+<li>data中所有的属性，最后都出现在vm上A</li>
+<li>vm身上的所有属性 及 Vue原型上的所有属性，在Vue模板中都可以直接使用</li>
+</ul>
+<h3 id="6-Object-defineProperty"><a href="#6-Object-defineProperty" class="headerlink" title="6.Object.defineProperty()"></a>6.Object.defineProperty()</h3><ul>
+<li><img src="/2024/10/26/Vue2/Vue2-6.1.png" srcset="/img/loading.gif" lazyload alt="数据代理"></li>
+</ul>
+<h3 id="7-数据代理"><a href="#7-数据代理" class="headerlink" title="7.数据代理"></a>7.数据代理</h3><ul>
+<li>通过一个对象对另一个对象中属性的操作</li>
+</ul>
+<h3 id="8-Vue中的数据代理"><a href="#8-Vue中的数据代理" class="headerlink" title="8.Vue中的数据代理"></a>8.Vue中的数据代理</h3><ul>
+<li>通过vm对象来代理data对象中属性的操作（读&#x2F;写）</li>
+<li>好处：更加方便的操作data中的数据</li>
+<li>原理：<ul>
+<li>通过Object.defineProperty()方法把data对象中所有属性添加到vm上，为每一个添加到vm上的属性，都指定一个getter和setter方法，当vm上属性被访问或修改时，会自动调用getters和setters方法，从而实现双向数据绑定</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-事件处理"><a href="#9-事件处理" class="headerlink" title="9.事件处理"></a>9.事件处理</h3><ul>
+<li>使用v-on指令绑定事件，或者@xxx绑定事件（其中xxx是事件名）</li>
+<li>事件的回调需要配置在methods中</li>
+<li>methods中配置函数时，不要使用箭头函数</li>
+<li>函数中this指向vm实例</li>
+<li>@click&#x3D;”demo”与@click&#x3D;”demo($event)”一致，但是后者可以传参</li>
+</ul>
+<h3 id="10-事件修饰符"><a href="#10-事件修饰符" class="headerlink" title="10.事件修饰符"></a>10.事件修饰符</h3><ul>
+<li>.stop：阻止事件冒泡</li>
+<li>.prevent：阻止默认事件</li>
+<li>.once：只执行一次</li>
+<li>.capture：使用事件捕获模式</li>
+<li>.self：只有event.target是当前操作元素时，才触发事件</li>
+<li>.passive：事件的默认行为立即执行，不会等待事件回调函数执行完毕</li>
+<li>修饰符可以链式使用</li>
+<li><img src="/images/Vue2-10.1.png" srcset="/img/loading.gif" lazyload alt="事件修饰符1"></li>
+<li><img src="/images/Vue2-10.2.png" srcset="/img/loading.gif" lazyload alt="事件修饰符2"></li>
+</ul>
+<h3 id="11-键盘事件"><a href="#11-键盘事件" class="headerlink" title="11.键盘事件"></a>11.键盘事件</h3><ul>
+<li>常用按键别名：<ul>
+<li>回车 &#x3D;&#x3D;&gt; enter</li>
+<li>删除 &#x3D;&#x3D;&gt; delete(退格&#x2F;delete)</li>
+<li>退出 &#x3D;&#x3D;&gt; esc</li>
+<li>空格 &#x3D;&#x3D;&gt; space</li>
+<li>换行 &#x3D;&#x3D;&gt; tab(特殊，配合keydown)</li>
+<li>上 &#x3D;&#x3D;&gt; up</li>
+<li>下 &#x3D;&#x3D;&gt; down</li>
+<li>左 &#x3D;&#x3D;&gt; left</li>
+<li>右 &#x3D;&#x3D;&gt; right</li>
+</ul>
+</li>
+<li>Vue中未提供别名的案件，可以用原始key值去绑定</li>
+<li>系统修饰键（用法特殊）：ctrl &#x2F; alt &#x2F; shift &#x2F;meta(win健)<ul>
+<li>配合keyup：按下后，同时按住其余按键，松开其他按键</li>
+<li>配合keydown：正常触发事件</li>
+</ul>
+</li>
+<li>利用keyCode绑定事件（不推荐）</li>
+<li>自己定义别名  Vue.config.keyCodes.xxx &#x3D; yyy（xxx为自定义按键名，yyy为原始按键值）<br><code>键盘事件也可以链式使用（不常见）</code></li>
+</ul>
+<h3 id="12-计算属性"><a href="#12-计算属性" class="headerlink" title="12.计算属性"></a>12.计算属性</h3><ul>
+<li>计算属性是一种特殊的属性，它依赖于已有的属性，并返回一个值</li>
+<li>语法：computed:{属性名：函数}</li>
+<li>计算属性的函数中，this指向vm实例</li>
+<li>计算属性的返回值会被缓存，只有当依赖的数据发生变化时，才会重新计算</li>
+<li>计算属性的返回值可以直接用在模板中，也可以用在其他地方</li>
+</ul>
+<h3 id="13-监视属性"><a href="#13-监视属性" class="headerlink" title="13.监视属性"></a>13.监视属性</h3><ul>
+<li>监视属性是一种特殊的属性，它依赖于已有的属性，并在属性值发生变化时，执行一个函数</li>
+<li>监视属性必须存在</li>
+<li>两种写法：<ul>
+<li>1.watch:{属性名：函数}</li>
+<li>2.vm.$watch(‘属性名’,函数)</li>
+</ul>
+</li>
+<li>深度监视：deep:true,监视多级结构中所有属性的变化，watch默认不检测多级结构内部的变化</li>
+<li>immediate:true 初始化时，会执行一次回调函数</li>
+</ul>
+<h3 id="14-computed和watch的区别"><a href="#14-computed和watch的区别" class="headerlink" title="14.computed和watch的区别"></a>14.computed和watch的区别</h3><ul>
+<li>区别：<ul>
+<li>1.computed能够完成的功能，watch都可以做到</li>
+<li>2.watch可以做到的功能，computed不一定能完成，例如watch可以进行异步操作</li>
+</ul>
+</li>
+<li>两个重要小原则：<ul>
+<li>1.所有被Vue管理的函数，最好使用普通函数，这样this才是指向vm实例或者组件实例</li>
+<li>2.所有不被Vue所管理的函数（定时器回调函数，ajax回调函数），最好写成箭头函数，这样this的指向才会是vm或者实例组件</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-绑定class样式"><a href="#15-绑定class样式" class="headerlink" title="15.绑定class样式"></a>15.绑定class样式</h3><ul>
+<li>字符串形式&lt; ：class&#x3D;”xxx”&gt; 适用于样式名不确定，需要动态指定</li>
+<li>数组写法：&lt;:class&#x3D;”[xxx,yyy]”&gt; 适用于样式名不确定，名字也不确定</li>
+<li>对象写法：&lt;:class&#x3D;”{xxx:true,yyy:false}”&gt; 适用于样式名确定，名字也确定，但要动态决定状态</li>
+</ul>
+<h3 id="16-style绑定"><a href="#16-style绑定" class="headerlink" title="16.style绑定"></a>16.style绑定</h3><ul>
+<li>对象写法：style&#x3D;”{color:red,fontSize:16px}”</li>
+<li>数组写法：style&#x3D;”[style1,style2]”</li>
+</ul>
+<h3 id="17-条件渲染"><a href="#17-条件渲染" class="headerlink" title="17.条件渲染"></a>17.条件渲染</h3><ul>
+<li>v-show：根据条件，决定是否渲染标签</li>
+<li>v-if：根据条件，决定是否渲染标签及其子元素</li>
+<li>v-else-if：等价于python中的elif</li>
+<li>v-else：等价于python中的else</li>
+<li>后面三者不能分割使用</li>
+</ul>
+<h3 id="18-列表渲染"><a href="#18-列表渲染" class="headerlink" title="18.列表渲染"></a>18.列表渲染</h3><ul>
+<li>v-for：<ul>
+<li>1.用于展示列表数据</li>
+<li>2.语法：v-for&#x3D;”(item,index) in item :key&#x3D;index”</li>
+<li>可遍历对象： 数组、对象、字符串、指定次数（后两者用的很少）</li>
+</ul>
+</li>
+<li>key的原理：<ul>
+<li>key是虚拟DOM对象的标识，当状态中的数据发生变化时，Vue会根据新数据生成新的虚拟DOM，随后将新旧DOM 进行比较，找出需要更新的部分，然后进行局部更新</li>
+<li>开发中最好使用每条数据的唯一标识作为key，如果不存在逆序添加则用index作为key也没有问题</li>
+</ul>
+</li>
+<li>列表过滤:<ul>
+<li>filter()实现 </li>
+<li>watch实现：</li>
+<li><img src="/images/Vue2-18.1.png" srcset="/img/loading.gif" lazyload alt="列表过滤1"></li>
+<li>computed实现：</li>
+<li><img src="/images/Vue2-18.2.png" srcset="/img/loading.gif" lazyload alt="列表过滤2"></li>
+</ul>
+</li>
+<li>列表排序：<ul>
+<li>sort(val1，val2 )实现<ul>
+<li>val1-val2 升序</li>
+<li>val2-val1 降序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="19-vue-set"><a href="#19-vue-set" class="headerlink" title="19.vue.set()"></a>19.vue.set()</h3><ul>
+<li>作用：动态添加属性到data中</li>
+<li>语法：Vue.set(对象，’属性名’,值)</li>
+<li>注意：<ul>
+<li>1.对象必须是data中的对象</li>
+<li>2.属性名必须是字符串</li>
+<li>3.值可以是任意类型<br><code>局限：只能给vm._data中的对象实行动态添加，不能直接给vm._data添加属性</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="20-vm-set"><a href="#20-vm-set" class="headerlink" title="20.vm.$set()"></a>20.vm.$set()</h3><ul>
+<li>作用：动态添加属性到data中</li>
+<li>语法：vm.$set(对象，’属性名’,值)</li>
+<li>注意：<ul>
+<li>1.对象可以是data中的对象，也可以是vm实例</li>
+<li>2.属性名必须是字符串</li>
+<li>3.值可以是任意类型<br><code>局限：只能给vm._data中的对象实行动态添加，不能直接给vm._data添加属性</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="21-Vue检测数据的原理"><a href="#21-Vue检测数据的原理" class="headerlink" title="21.Vue检测数据的原理"></a>21.Vue检测数据的原理</h3><ul>
+<li>Vue会监视data中所有层次的数据</li>
+<li>如何实现监测对象中的数据:<ul>
+<li>通过setter实现监视，且要在new Vue()时，就传入要监测的数据<ul>
+<li>（1）对象中后追加的属性，Vue默认不做响应式处理</li>
+<li>（2）如果需要给后面添加的属性做响应式，需要使用Vue.set()或者vm.$set()方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何实现监测数组中的数据：<ul>
+<li>通过包裹数组更新元素的方法实现，本质就是做了两件事<ul>
+<li>（1）调用原生对应的方法对数组进行更新</li>
+<li>（2）重新解析模板，进而更新页面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在Vue修改数组中的某个元素一定要用如下方法：<ul>
+<li>使用这些API：push()、pop()、shift()、unshift()、splice()、sort()、reverse()</li>
+<li>Vue.set()、vm.$set()</li>
+</ul>
+</li>
+</ul>
+<p><code>特别注意：Vue.set()、vm.$set()只能给data中的对象添加属性，不能给vm或者vm的根数据添加属性</code></p>
+<h3 id="22-表单收集"><a href="#22-表单收集" class="headerlink" title="22.表单收集"></a>22.表单收集</h3><ul>
+<li>若<code>&lt;input type=&quot;text&quot;&gt;</code>，则v-model收集的是value值，用户输入的也是value值</li>
+<li>若<code>&lt;input type=&quot;radio&quot;&gt;</code>，则v-model收集的是value值，要给标签配置value值，用户选择哪个，v-model会更新为相应的value值</li>
+<li>若<code>&lt;input type=&quot;checkbox&quot;&gt;</code><ul>
+<li>没有配置value值，则v-model收集的是布尔值，用户勾选，v-model会更新为true</li>
+<li>配置了value值，且初始值为数组，那么收集的就是由value组成的数组</li>
+<li>配置了value值，且初始值为非数组，那么收集的就是布尔值</li>
+</ul>
+</li>
+<li>v-modle的修饰符：<ul>
+<li>.lazy：默认情况下，v-model在每次input事件触发时，都会更新数据，加上.lazy修饰符，则只在输入框失去焦点时，才会更新数据</li>
+<li>.number：将用户输入的字符串转换为数字类型</li>
+<li>.trim：自动去除用户输入的首尾空格</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-过滤器"><a href="#23-过滤器" class="headerlink" title="23.过滤器"></a>23.过滤器</h3><ul>
+<li><p>定义：对要显示的数据进行特定格式化之后再显示（适用于一些简单逻辑）</p>
+</li>
+<li><p>语法：<br><code>    - 注册过滤器：Vue.filter(&#39;过滤器名&#39;,函数)</code><br><code>    - 使用过滤器：&#123;&#123;xxx|yyy&#125;&#125;(yyy为过滤器名)</code></p>
+</li>
+<li><p>备注：</p>
+<ul>
+<li>1.过滤器可以链式使用</li>
+<li>2.未改变原本的元素</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-内置指令"><a href="#24-内置指令" class="headerlink" title="24.内置指令"></a>24.内置指令</h3><ul>
+<li>v-bind:单向数据绑定，简写— ：xxx</li>
+<li>v-model:双向数据绑定</li>
+<li>v-for: 遍历数组对象字符串</li>
+<li>v-on : 绑定事件监听，简写—- @xxx</li>
+<li>v-if: 条件渲染</li>
+<li>v-else: 条件渲染</li>
+<li>v-show: 条件渲染，与v-if的区别是，v-show会始终渲染标签，只是改变display:none&#x2F;block</li>
+<li>v-text: 显示文本内容，与插值语法的区别是，v-text不会解析表达式，直接显示文本内容,不可以进行文本拼接</li>
+<li>v-html:支持结构解析，可以解析html代码，不建议使用</li>
+<li>v-cloak: 解决闪烁问题，在页面加载时，隐藏标签（配合css），等Vue实例创建完成，再显示标签（无需赋值）</li>
+<li>v-once：只渲染一次，数据变化时，不会重新渲染（无需赋值）</li>
+<li>v-pre：跳过当前元素和子元素的编译过程，直到遇到v-cloak指令才开始编译</li>
+</ul>
+<h3 id="25-自定义指令"><a href="#25-自定义指令" class="headerlink" title="25.自定义指令"></a>25.自定义指令</h3><ul>
+<li>定义：自定义指令，可以绑定到元素上，实现一些特殊功能</li>
+<li>语法：<ul>
+<li>注册指令：Vue.directive()或者derectives</li>
+<li>函数式：Vue.directive(‘指令名’:function(el,binding,vnode){})</li>
+<li>对象式：Vue.directive(‘指令名’:{<br>  bind:function(el,binding,vnode){},—一开始就执行<br>  update:function(el,binding,vnode){},—数据更新时执行<br>  inserted:function(el,binding,vnode){},—插入DOM时执行<br>  })</li>
+</ul>
+</li>
+<li>备注：<ul>
+<li>定义时不加v，使用时要加v</li>
+<li>指令名是多个单词，那么需要用-连接</li>
+</ul>
+</li>
+</ul>
+<h3 id="26-生命周期"><a href="#26-生命周期" class="headerlink" title="26.生命周期"></a>26.生命周期</h3><ul>
+<li>又名生命周期函数、生命周期钩子，名字不可更改，this指向vm</li>
+<li>四对生命周期函数：<ul>
+<li>beforeCreate：实例刚被创建，数据观测和事件配置还未开始</li>
+<li>created：实例创建完成，数据观测和事件配置已完成，但还没有挂载到实例上，$el还不存在</li>
+<li>beforeMount：实例开始挂载，$el已存在，但还没有开始渲染</li>
+<li>mounted：实例挂载完成，$el已渲染完成</li>
+<li>beforeUpdate：数据更新时调用，发生在虚拟DOM重新渲染和打补丁之前</li>
+<li>updated：数据更新时调用，发生在虚拟DOM重新渲染和打补丁之后</li>
+<li>beforeDestroy：实例销毁之前调用</li>
+<li>destroyed：实例销毁之后调用</li>
+</ul>
+</li>
+</ul>
+<h3 id="27-组件"><a href="#27-组件" class="headerlink" title="27.组件"></a>27.组件</h3><ul>
+<li>三大步骤：<ul>
+<li>1.定义组件</li>
+<li>2.注册组件Vue.component()注册组件</li>
+<li>3.使用组件</li>
+</ul>
+</li>
+<li>定义组件：<ul>
+<li>组件是一个对象，包含三个选项：<ul>
+<li>template：组件的模板</li>
+<li>data：组件的属性</li>
+<li>methods：组件的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注册组件：<ul>
+<li>局部注册：new Vue的时候传入components选项，注册局部组件</li>
+<li>全局注册：Vue.component()注册全局组件</li>
+</ul>
+</li>
+<li>使用组件：<ul>
+<li>&lt;组件名&gt;&lt; &#x2F;组件名&gt;<br><code>注意：</code><blockquote>
+<p><code>关于组件名：</code></p>
+<blockquote>
+<p><code>一个单词组成的：</code></p>
+<blockquote>
+<p><code>首字母小写、首字母大写</code></p>
+</blockquote>
+<p><code>多个单词组成的：</code></p>
+<blockquote>
+<p><code>短横线连接</code><br><code>CamelCase写法，两个单词首字母大写</code></p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="28-单文件组件"><a href="#28-单文件组件" class="headerlink" title="28.单文件组件"></a>28.单文件组件</h3><ul>
+<li>vue文件</li>
+<li>一个文件就是一个组件，包含template、script、style三个部分</li>
+<li>同时一个大组件可以包含多个小组件</li>
+<li>有一个名为APP的组件管理所有组件</li>
+<li>组件需要export default导出，才能在其他组件中使用</li>
+</ul>
+<h3 id="29-ref"><a href="#29-ref" class="headerlink" title="29.ref"></a>29.ref</h3><ul>
+<li>作用：获取组件实例或元素</li>
+<li>语法：ref&#x3D;”xxx”</li>
+<li>备注：<ul>
+<li>1.用在标签元素上，与id属性类似，可以获取元素</li>
+<li>2.用在组件上，可以获取组件实例vm</li>
+</ul>
+</li>
+</ul>
+<h3 id="30-props"><a href="#30-props" class="headerlink" title="30.props"></a>30.props</h3><ul>
+<li>简单接收:<br>  props:[‘name’,’age’]</li>
+<li>对象接收(接收+限制):<ul>
+<li>props:{<br>  name:String,<br>  age:Number<br>}</li>
+</ul>
+</li>
+<li>接收+限制+默认值:<ul>
+<li>props:{<br>  name:{<br>  type:String,<br>  required:true,<br>  default:’默认值’<br>  }<br>  }</li>
+</ul>
+</li>
+</ul>
+<h3 id="31-mixin"><a href="#31-mixin" class="headerlink" title="31.mixin"></a>31.mixin</h3><ul>
+<li>能够将重复的代码抽取到一个文件中，然后在多个组件中使用</li>
+<li>语法：<ul>
+<li>1.定义mixin：<ul>
+<li>定义一个对象，包含多个选项</li>
+<li>选项可以是data、methods、computed、watch等</li>
+</ul>
+</li>
+<li>2.使用mixin：<ul>
+<li>直接在组件中使用mixins选项，传入mixin对象</li>
+<li>也可以在组件中使用mixins选项，传入多个mixin对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>1.mixin对象中的选项，会覆盖组件自身的同名选项</li>
+<li>2.mixin对象中的选项，不会影响组件的生命周期</li>
+<li>3.mixin对象中的选项，不会影响父组件和子组件的通信</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-插件"><a href="#32-插件" class="headerlink" title="32.插件"></a>32.插件</h3><ul>
+<li>作用：扩展Vue的功能</li>
+<li>语法：<ul>
+<li>1.定义插件：<ul>
+<li>定义一个对象，包含install方法</li>
+<li>install方法接收Vue构造函数和options对象</li>
+<li>install方法的作用：<ul>
+<li>1.<code>全局过滤器 Vue.filter()</code></li>
+<li>2.<code>全局指令 Vue.directive()</code></li>
+<li>3.<code>全局混入 Vue.mixin()</code></li>
+<li>4.<code>全局实例方法 Vue.prototype.$xxx()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2.使用插件：<ul>
+<li>直接使用插件，传入Vue构造函数和options对象</li>
+<li>也可以在Vue.use()方法中传入插件对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-scoped样式"><a href="#33-scoped样式" class="headerlink" title="33.scoped样式"></a>33.scoped样式</h3><ul>
+<li>作用：隔离样式，防止样式污染</li>
+<li>语法：<ul>
+<li>1.在style标签上添加scoped属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-案例分析"><a href="#34-案例分析" class="headerlink" title="34.案例分析"></a>34.案例分析</h3><ul>
+<li>组件化编码流程<ul>
+<li>1.拆分静态组件：组件按照功能拆分，不易过于粗糙，也不宜过于细致，命名不要与html元素重复</li>
+<li>2.实现动态组件：考虑好数据的存放位置，数据是一个组件在使用，还是一系列组件在使用<ul>
+<li>1）一个组件使用，放在自己内部就好</li>
+<li>2）一系列组件使用，放在他们的父组件中，通过props传递数据</li>
+</ul>
+</li>
+<li>3.实现交互：从绑定事件开始</li>
+</ul>
+</li>
+<li>props适用于：<ul>
+<li>1.父组件&#x3D;&#x3D;&gt;子组件传值</li>
+<li>2.子组件&#x3D;&#x3D;&gt;父组件传值（需要先在父组件定义一个方法，然后在子组件调用）</li>
+</ul>
+</li>
+<li>v-model的注意事项：v-model绑定的值不可以是props传过来的值，因为props传值不可以修改</li>
+<li>props传值时，若是对象类型，修改对象的属性时，Vue不会报错，但是不推荐这样做，毕竟不合规则</li>
+</ul>
+<h3 id="35-WebStorage"><a href="#35-WebStorage" class="headerlink" title="35.WebStorage"></a>35.WebStorage</h3><ul>
+<li>setItem(key,value)：设置存储项</li>
+<li>getItem(key)：获取存储项</li>
+<li>removeItem(key)：删除存储项</li>
+<li>clear()：清空存储</li>
+<li>sessionStorage：只在当前会话（窗口）有效，关闭浏览器窗口后，数据清空</li>
+<li>localStorage：除非手动删除，否则数据永久保存</li>
+<li>注意：<ul>
+<li>1.存储内容大小一般支持5M左右</li>
+<li>2.存储内容只能是字符串</li>
+<li>3.存储内容只能存储在同源的域名下</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-组件自定义事件"><a href="#36-组件自定义事件" class="headerlink" title="36.组件自定义事件"></a>36.组件自定义事件</h3><ul>
+<li>组件间的通信方式：适用于子组件&#x3D;&#x3D;&gt;父组件</li>
+<li>在父组件中绑定组件自定义事件，在子组件中触发组件自定义事件</li>
+<li>绑定方式：<ul>
+<li>1.<code>&lt;demo @xxx=&quot;test&quot;&gt;</code></li>
+<li>2.<code>&lt;demo ref=&quot;demo&quot;&gt;</code>…..<code>mounted()&#123;this.$refs.demo.$on(&#39;xxx&#39;,this.test)&#125;</code></li>
+<li>若要求只能触发一次，可以使用once修饰符，或者$once()方法</li>
+</ul>
+</li>
+<li>触发自定义事件：<code>this.$emit(&#39;xxx&#39;,参数)</code></li>
+<li>解绑自定义事件：<code>this.$off(&#39;xxx&#39;)</code></li>
+<li>使用原生事件，可以用native修饰符</li>
+</ul>
+<h3 id="37-全局事件总线"><a href="#37-全局事件总线" class="headerlink" title="37.全局事件总线"></a>37.全局事件总线</h3><ul>
+<li>安装全局事件总线：<br><code>new Vue(&#123;</code><br><code>.......</code><br><code>beforeCreate()&#123;</code><br><code>    Vue.prototype.$bus = new Vue()</code><br><code>&#125;</code><br><code>&#125;)</code></li>
+<li>使用全局事件总线：<ul>
+<li>接收数据<br>  <code>methods:&#123;</code><br>  <code>demo()&#123;&#125;</code><br>  <code>&#125;</code><br>  <code>mounted()&#123;</code><br>  <code>    this.$bus.$on(&#39;xxx&#39;,this.demo)</code><br>  <code>&#125;</code></li>
+<li>发送数据<br>  <code>this.$bus.$emit(&#39;xxx&#39;,参数)</code></li>
+</ul>
+</li>
+<li>注意：<ul>
+<li>1.全局事件总线，可以跨组件通信</li>
+<li>2.全局事件总线，可以实现跨越多层级的通信</li>
+<li>3.全局事件总线，不建议过度使用，会造成命名冲突，可读性差</li>
+</ul>
+</li>
+</ul>
+<h3 id="38-消息的订阅与发布"><a href="#38-消息的订阅与发布" class="headerlink" title="38.消息的订阅与发布"></a>38.消息的订阅与发布</h3><ul>
+<li>一种组件间通信的方式，适合于任意组件间通信</li>
+<li>使用步骤：<ul>
+<li>1.安装：<code>npm i pubsub-js</code></li>
+<li>2.导入：<code>import PubSub from &#39;pubsub-js&#39;</code></li>
+<li>3.订阅：<code>PubSub.subscribe(&#39;主题名&#39;,function(msg,data)&#123;&#125;)</code></li>
+<li>4.发布：<code>PubSub.publish(&#39;主题名&#39;,参数)</code></li>
+<li>5.注销：<code>PubSub.unsubscribe(&#39;主题id&#39;)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="39-动画效果"><a href="#39-动画效果" class="headerlink" title="39.动画效果"></a>39.动画效果</h3><ul>
+<li>作用：在插入，更新或者移除DOM元素时，在合适的时候给元素添加样式类名</li>
+<li>语法：<ul>
+<li>Enter:<code>v-enter-active</code> <code>v-enter;v-enter-to</code></li>
+<li>Leave:<code>v-leave-active</code> <code>v-leave;v-leave-to</code></li>
+</ul>
+</li>
+<li>写法：<ul>
+<li>1.准备好样式：<br>  1）元素进入的样式<br>  2）元素离开的样式</li>
+<li>2.使用<code>&lt;transition&gt;</code>包裹要过度的元素，并且配置name属性<br>  <code>&lt;transition name=&quot;xxx&quot;&gt;</code><br>  <code>    &lt;div v-if=&quot;show&quot;&gt;</code><br>  <code>        内容</code></li>
+</ul>
+<p>  <code>    &lt;/div&gt;</code><br>  <code>&lt;/transition&gt;</code></p>
+<ul>
+<li>3.备注：<br>  多个元素过度，使用transition-group组件，并且指定key属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="40-配置技术-代理"><a href="#40-配置技术-代理" class="headerlink" title="40.配置技术(代理)"></a>40.配置技术(代理)</h3><ul>
+<li>方法一：<br>  在vue.config.js中配置<br>  <code>devServer:&#123;</code><br>  <code>    proxy:http://localhost:5000</code><br>  <code>&#125;</code></li>
+<li>说明：<ul>
+<li>1.优点：简单</li>
+<li>2.缺点：无法配置多个代理，不能灵活的控制请求是否代理</li>
+<li>3.工作方式：请求时优先请求前端资源，若自身没有此项资源，再向外请求</li>
+</ul>
+</li>
+<li>方法二：<br>  在vue.config.js中配置<br>  <code> devServer:&#123;</code><br>  <code>    devServer:&#123;</code><br>  <code>    proxy:&#123;</code><br>  <code>        &#39;/api&#39;:&#123;</code><br>  <code>            target:&#39;http://localhost:5000&#39;,</code><br>  <code>            pathRewrite:&#123;&#39;^/api&#39;:&#39;&#39;&#125;</code><br>  <code>            changeOrigin:true</code><br>  <code>             &#125;</code><br>  <code>        &#125;</code><br>  <code>    &#125;</code><br>  <code>&#125;</code></li>
+<li>说明：<ul>
+<li>1.优点：可以配置多项代理，可以灵活控制是否代理</li>
+<li>2.缺点：配置稍微繁琐，请求时必须加前缀</li>
+</ul>
+</li>
+</ul>
+<h3 id="40-插槽"><a href="#40-插槽" class="headerlink" title="40.插槽"></a>40.插槽</h3><ul>
+<li>作用：让父组件可以向子组件插入html结构，也是一种组件间通信的方式，适用于父组件&#x3D;&#x3D;&gt;子组件</li>
+<li>分类：默认插槽、具名插槽、作用域插槽</li>
+</ul>
+<h3 id="41-路由"><a href="#41-路由" class="headerlink" title="41.路由"></a>41.路由</h3><ul>
+<li>理解：一个路由就是一组映射关系，多个路由需要路由器进行管理</li>
+<li>前端路由：key是路径，value是组件</li>
+<li>安装：<code>npm i vue-router</code></li>
+<li>应用：<code>Vue.use(VueRouter)&#123;routers:[]&#125;</code></li>
+<li>路由组件一般放在pages文件夹下，每个页面一个组件；一般组件放在components文件夹下</li>
+<li>切换是将组件销毁，需要时在进行挂载</li>
+<li>每个组件都有<code>自己的$route</code>属性，存储自己的路由信息</li>
+<li>整个应用只有一个router，可以通过组件的<code>$router</code>获取</li>
+</ul>
+<h3 id="42-多级路由"><a href="#42-多级路由" class="headerlink" title="42.多级路由"></a>42.多级路由</h3><ul>
+<li>配置在一级路由的children选项中</li>
+<li>跳转规则要写完整</li>
+</ul>
+<h3 id="43-路由query参数"><a href="#43-路由query参数" class="headerlink" title="43.路由query参数"></a>43.路由query参数</h3><ul>
+<li>路由路径中带有参数，可以通过<code>$route.query</code>获取</li>
+<li>跳转时，可以通过<code>:to=&quot;&#123;path:&#39;路径&#39;,query:&#123;参数名:参数值&#125;&#125;</code>传递参数</li>
+</ul>
+<h3 id="44-命名路由"><a href="#44-命名路由" class="headerlink" title="44.命名路由"></a>44.命名路由</h3><ul>
+<li>在配置路由时，给路由添加name属性</li>
+<li>配置后，可以在跳转时用name属性，代替path属性，简化跳转路径</li>
+</ul>
+<h3 id="45-路由params参数"><a href="#45-路由params参数" class="headerlink" title="45.路由params参数"></a>45.路由params参数</h3><ul>
+<li>配置在路由路径中，通过<code>/:参数名</code>获取</li>
+<li>跳转时，可以通过<code>:to=&quot;&#123;name:&#39;路由名&#39;,params:&#123;参数名:参数值&#125;&#125;</code>传递参数（路径只能通过name属性跳转，不可以用path属性）</li>
+</ul>
+<h3 id="46-路由的props"><a href="#46-路由的props" class="headerlink" title="46.路由的props"></a>46.路由的props</h3><ul>
+<li>1.第一种写法：对象形式<code>props:&#123;a:1,b:&quot;hello&quot;&#125;</code>，都会以props形式传递给组件</li>
+<li>2.第二种写法：布尔值形式<code>props:ture</code>，会把该路由收到的所有<code>params</code>参数，以props形式传递给组件</li>
+<li>3.第三种写法：函数形式<code>props:function($route)&#123;return &#123;a:$route.quary.a&#125;&#125;</code>，</li>
+</ul>
+<h3 id="47-路由replace"><a href="#47-路由replace" class="headerlink" title="47.路由replace"></a>47.路由replace</h3><ul>
+<li>作用：替换当前路由，不会留下历史记录</li>
+<li>在router-link上添加replace属性</li>
+</ul>
+<h3 id="48-编程式路由导航"><a href="#48-编程式路由导航" class="headerlink" title="48.编程式路由导航"></a>48.编程式路由导航</h3><ul>
+<li>作用：通过代码控制路由的跳转</li>
+<li>跳转语法：<code>this.$router.push()</code>或者<code>this.$router.replace()</code></li>
+<li>回退和前进：<code>this.$router.back()</code>或者<code>this.$router.forward()</code></li>
+<li>go方法：<code>this.$router.go(n)</code>n为正数，向前走n步；n为负数，向后走n步</li>
+</ul>
+<h3 id="49-缓存路由"><a href="#49-缓存路由" class="headerlink" title="49.缓存路由"></a>49.缓存路由</h3><ul>
+<li>作用：在切换路由时，缓存当前路由组件，下次进入时直接渲染缓存的组件</li>
+<li>实现：用<code>keep-alive</code>元素包裹<code>router-view</code>，并设置<code>include</code>属性，值为要缓存的组件名</li>
+</ul>
+<h3 id="50-两个新的生命周期函数"><a href="#50-两个新的生命周期函数" class="headerlink" title="50.两个新的生命周期函数"></a>50.两个新的生命周期函数</h3><ul>
+<li>activated：组件激活时调用，只调用一次（从无到有）</li>
+<li>deactivated：组件失活时调用，只调用一次（从有到无）</li>
+</ul>
+<h3 id="51-路由工作的模式"><a href="#51-路由工作的模式" class="headerlink" title="51.路由工作的模式"></a>51.路由工作的模式</h3><p><img src="/../images/Vue2-51.1.png" srcset="/img/loading.gif" lazyload alt="路由工作的模式"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue2</div>
+      <div>http://example.com/2024/10/26/Vue2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sad-master</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/21/Promise/" title="Promise">
+                        <span class="hidden-mobile">Promise</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","appKey":"Qckx6EOeKbmUAGqSsKBuoep7","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

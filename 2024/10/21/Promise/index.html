@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="sad-master">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Promise1.Promise 基础使用 promise 是一个构造函数 其中接收一个参数 exexcutor 执行器函数，达到预期结果后，调用 resolve 函数，将结果传递给 promise；如果出现错误，调用 reject 函数，将错误信息传递给 promise。 .then() 方法用于处理 promise 成功&#x2F;失败的结果， .catch() 方法用于处理 promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http://example.com/2024/10/21/Promise/index.html">
+<meta property="og:site_name" content="sad-master">
+<meta property="og:description" content="Promise1.Promise 基础使用 promise 是一个构造函数 其中接收一个参数 exexcutor 执行器函数，达到预期结果后，调用 resolve 函数，将结果传递给 promise；如果出现错误，调用 reject 函数，将错误信息传递给 promise。 .then() 方法用于处理 promise 成功&#x2F;失败的结果， .catch() 方法用于处理 promise">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/Promise-1.1.png">
+<meta property="og:image" content="http://example.com/images/Promise-1.2.png">
+<meta property="og:image" content="http://example.com/images/Promise-4.1.png">
+<meta property="og:image" content="http://example.com/images/Promise-4.2.png">
+<meta property="og:image" content="http://example.com/images/Promise-13.1.png">
+<meta property="article:published_time" content="2024-10-21T02:20:31.000Z">
+<meta property="article:modified_time" content="2024-10-22T07:21:56.719Z">
+<meta property="article:author" content="sad-master">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/Promise-1.1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Promise - sad-master</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"busuanzi":{"app_id":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","app_key":"Qckx6EOeKbmUAGqSsKBuoep7","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sad-master</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Promise"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-21 10:20" pubdate>
+          2024年10月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          875 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Promise</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h3 id="1-Promise-基础使用"><a href="#1-Promise-基础使用" class="headerlink" title="1.Promise 基础使用"></a>1.Promise 基础使用</h3><ul>
+<li>promise 是一个构造函数</li>
+<li>其中接收一个参数 exexcutor 执行器函数，达到预期结果后，调用 resolve 函数，将结果传递给 promise；如果出现错误，调用 reject 函数，将错误信息传递给 promise。</li>
+<li>.then() 方法用于处理 promise 成功&#x2F;失败的结果，</li>
+<li>.catch() 方法用于处理 promise 失败的结果。</li>
+<li>组合写法：.then()成功；.catch()失败。</li>
+<li><img src="/images/Promise-1.1.png" srcset="/img/loading.gif" lazyload alt="promise基础"></li>
+<li><img src="/images/Promise-1.2.png" srcset="/img/loading.gif" lazyload alt="promise基础"></li>
+</ul>
+<h3 id="2-Promise-三个状态"><a href="#2-Promise-三个状态" class="headerlink" title="2.Promise 三个状态"></a>2.Promise 三个状态</h3><ul>
+<li>pending（等待）：初始状态，既没有被执行也没有被拒绝。</li>
+<li>fulfilled（已完成）：promise 成功执行，并返回一个值。</li>
+<li>rejected（已拒绝）：promise 执行失败，并抛出一个错误。</li>
+<li>仅两种转化状态：</li>
+<li>1.pending -&gt; fulfilled：调用 resolve 函数，将结果传递给 promise。</li>
+<li>2.pending -&gt; rejected：调用 reject 函数，将错误信息传递给 promise。</li>
+</ul>
+<h3 id="3-Promise-的结果"><a href="#3-Promise-的结果" class="headerlink" title="3.Promise 的结果"></a>3.Promise 的结果</h3><ul>
+<li>resolve 函数中可以传递成功获取的结果，.then() 方法中可以接收成功的结果。</li>
+<li>reject 函数中可以传递失败的原因，.catch() 方法中可以接收失败的原因。</li>
+<li>注意：如果 promise 已经处于 fulfilled 或 rejected 状态，再调用 resolve 或 reject 不会起作用，而是会被忽略。</li>
+</ul>
+<h3 id="4-Promise封装ajax"><a href="#4-Promise封装ajax" class="headerlink" title="4.Promise封装ajax"></a>4.Promise封装ajax</h3><ul>
+<li><img src="/images/Promise-4.1.png" srcset="/img/loading.gif" lazyload alt="promise封装ajax"></li>
+<li><img src="/images/Promise-4.2.png" srcset="/img/loading.gif" lazyload alt="promise封装ajax"></li>
+</ul>
+<h3 id="5-Promise-resolve"><a href="#5-Promise-resolve" class="headerlink" title="5.Promise.resolve()"></a>5.Promise.resolve()</h3><ul>
+<li>将一个普通对象或值转换成一个 Promise 对象，状态为 fulfilled。</li>
+<li>如果参数是一个 Promise 对象，则直接返回该对象。</li>
+<li>用途：设置缓存结构，减小后端压力</li>
+</ul>
+<h3 id="6-Promise-reject"><a href="#6-Promise-reject" class="headerlink" title="6.Promise.reject()"></a>6.Promise.reject()</h3><ul>
+<li>将一个普通对象或值转换成一个 Promise 对象，状态为 rejected。</li>
+<li>如果参数是一个 Promise 对象，则直接返回该对象。</li>
+<li>用途：对于成功的promise对象中的个例进行错误处理</li>
+</ul>
+<h3 id="7-Promise链式调用"><a href="#7-Promise链式调用" class="headerlink" title="7.Promise链式调用"></a>7.Promise链式调用</h3><ul>
+<li>.then()返回的新 promise 对象，可以继续调用 .then() 方法。</li>
+<li>不执行return，则返回undefined,fulfilled状态的</li>
+<li>执行return Promise.resolve(value)，则返回value,fulfilled状态的</li>
+<li>执行return Promise.reject(reason)，则返回reason,rejected状态的</li>
+</ul>
+<h3 id="8-Promise-all"><a href="#8-Promise-all" class="headerlink" title="8.Promise.all()"></a>8.Promise.all()</h3><ul>
+<li>用于将多个 Promise 实例，包装成一个新的 Promise 实例。</li>
+<li>只有当所有 Promise 实例都成功，才会成功，否则失败。</li>
+<li>成功时返回一个数组，对应每个 Promise 实例的返回值。</li>
+<li>失败时返回第一个失败的 Promise 实例的错误信息。</li>
+</ul>
+<h3 id="9-Promise-race"><a href="#9-Promise-race" class="headerlink" title="9.Promise.race()"></a>9.Promise.race()</h3><ul>
+<li>用于将多个 Promise 实例，包装成一个新的 Promise 实例。</li>
+<li>其中一个实例率先改变状态，则新的 Promise 实例也会改变状态。</li>
+<li>用途：超时判定</li>
+</ul>
+<h3 id="10-Promise-allSettled"><a href="#10-Promise-allSettled" class="headerlink" title="10.Promise.allSettled()"></a>10.Promise.allSettled()</h3><ul>
+<li>用于将多个 Promise 实例，包装成一个新的 Promise 实例。</li>
+<li>无论 Promise 实例是成功还是失败，都会在.then()中接收到相应的结果。</li>
+</ul>
+<h3 id="11-Promise-any"><a href="#11-Promise-any" class="headerlink" title="11.Promise.any()"></a>11.Promise.any()</h3><ul>
+<li>用于将多个 Promise 实例，包装成一个新的 Promise 实例。</li>
+<li>只有当所有 Promise 实例都失败，才会失败，否则成功。   </li>
+<li>用途：多平台的授权登录，只要有一个平台授权成功，则登录成功。</li>
+</ul>
+<h3 id="12-finally"><a href="#12-finally" class="headerlink" title="12.finally()"></a>12.finally()</h3><ul>
+<li>用于指定不管 Promise 实例是成功还是失败，都会执行的操作。</li>
+<li>无论 Promise 实例是成功还是失败，都会执行指定的操作。</li>
+<li>是一种特殊的透明状态，后面接.then()或.catch()方法，接收的值是之前return的值。</li>
+</ul>
+<h3 id="13-Async-Await"><a href="#13-Async-Await" class="headerlink" title="13.Async&#x2F;Await"></a>13.Async&#x2F;Await</h3><ul>
+<li>异步编程的语法糖，可以让异步操作变得更加方便。</li>
+<li>异步函数返回一个 Promise 对象，可以使用 await 关键字获取该 Promise 对象的值。</li>
+<li>异步函数中使用 await 关键字，等同于将该函数暂停，等待 Promise 对象状态改变，再恢复执行。</li>
+<li>try…catch 结构，可以捕获异常。</li>
+<li><img src="/images/Promise-13.1.png" srcset="/img/loading.gif" lazyload alt="async/await"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Promise</div>
+      <div>http://example.com/2024/10/21/Promise/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sad-master</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/26/Vue2/" title="Vue2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/19/ES6/" title="ES6">
+                        <span class="hidden-mobile">ES6</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","appKey":"Qckx6EOeKbmUAGqSsKBuoep7","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

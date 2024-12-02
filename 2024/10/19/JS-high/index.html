@@ -1,0 +1,1096 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="sad-master">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="js高级1.数据类型1.1 分类1.1.1 基本类型 数值类型：Number 字符串类型：String 布尔类型：Boolean 空类型：Null 未定义类型：Undefined  1.1.2 对象（引用）类型 Object ：任意对象 array ：（特别的对象，数值下标，内部有序） function ：函数（特别的对象，可以运行）  1.2 判断 typeof：判断基本类型 返回数据类型的字符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS_high">
+<meta property="og:url" content="http://example.com/2024/10/19/JS-high/index.html">
+<meta property="og:site_name" content="sad-master">
+<meta property="og:description" content="js高级1.数据类型1.1 分类1.1.1 基本类型 数值类型：Number 字符串类型：String 布尔类型：Boolean 空类型：Null 未定义类型：Undefined  1.1.2 对象（引用）类型 Object ：任意对象 array ：（特别的对象，数值下标，内部有序） function ：函数（特别的对象，可以运行）  1.2 判断 typeof：判断基本类型 返回数据类型的字符">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-19T02:40:20.000Z">
+<meta property="article:modified_time" content="2024-10-19T02:41:29.841Z">
+<meta property="article:author" content="sad-master">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>JS_high - sad-master</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"busuanzi":{"app_id":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","app_key":"Qckx6EOeKbmUAGqSsKBuoep7","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sad-master</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JS_high"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-19 10:40" pubdate>
+          2024年10月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次阅读
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JS_high</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="js高级"><a href="#js高级" class="headerlink" title="js高级"></a>js高级</h1><h2 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h2><h3 id="1-1-分类"><a href="#1-1-分类" class="headerlink" title="1.1 分类"></a>1.1 分类</h3><h4 id="1-1-1-基本类型"><a href="#1-1-1-基本类型" class="headerlink" title="1.1.1 基本类型"></a>1.1.1 基本类型</h4><ul>
+<li>数值类型：Number</li>
+<li>字符串类型：String</li>
+<li>布尔类型：Boolean</li>
+<li>空类型：Null</li>
+<li>未定义类型：Undefined</li>
+</ul>
+<h4 id="1-1-2-对象（引用）类型"><a href="#1-1-2-对象（引用）类型" class="headerlink" title="1.1.2 对象（引用）类型"></a>1.1.2 对象（引用）类型</h4><ul>
+<li>Object ：任意对象</li>
+<li>array ：（特别的对象，数值下标，内部有序）</li>
+<li>function ：函数（特别的对象，可以运行）</li>
+</ul>
+<h3 id="1-2-判断"><a href="#1-2-判断" class="headerlink" title="1.2 判断"></a>1.2 判断</h3><ul>
+<li>typeof：判断基本类型 返回数据类型的字符串表达<ul>
+<li>可以判断 null &#x2F; undefined &#x2F; 数值 &#x2F; 字符串 &#x2F; 布尔值</li>
+</ul>
+</li>
+<li>instanceof：判断对象类型<ul>
+<li>可以判断数组、函数、对象</li>
+</ul>
+</li>
+<li>&#x3D;&#x3D;&#x3D;：判断值和类型<ul>
+<li>可以判断 udefine、null</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-类型剖析"><a href="#1-3-类型剖析" class="headerlink" title="1.3 类型剖析"></a>1.3 类型剖析</h3><h4 id="1-3-1-udefine和null的区别？"><a href="#1-3-1-udefine和null的区别？" class="headerlink" title="1.3.1 udefine和null的区别？"></a>1.3.1 udefine和null的区别？</h4><ul>
+<li>undefined：变量声明但未赋值，值为undefined</li>
+<li>null：定义了，赋值了，变量值为null，表示空值</li>
+</ul>
+<h4 id="1-3-2-什么时候给变量赋值为null？"><a href="#1-3-2-什么时候给变量赋值为null？" class="headerlink" title="1.3.2 什么时候给变量赋值为null？"></a>1.3.2 什么时候给变量赋值为null？</h4><ul>
+<li>1.初始赋值为null，一般表明将要赋值为对象</li>
+<li>2.最后赋值为null，表示变量不再有意义，供垃圾回收器回收内存</li>
+</ul>
+<h4 id="1-3-3-严格区别变量类型与数据类型？"><a href="#1-3-3-严格区别变量类型与数据类型？" class="headerlink" title="1.3.3 严格区别变量类型与数据类型？"></a>1.3.3 严格区别变量类型与数据类型？</h4><ul>
+<li>数据类型：基本类型、对象类型</li>
+<li>变量类型（变量内存值的类型）：<ul>
+<li>基本类型：保存的就是基本类型的数据</li>
+<li>引用类型：保存的是地址值</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-数据、变量、内存"><a href="#2-数据、变量、内存" class="headerlink" title="2 数据、变量、内存"></a>2 数据、变量、内存</h2><h4 id="2-1-1-什么是数据？"><a href="#2-1-1-什么是数据？" class="headerlink" title="2.1.1 什么是数据？"></a>2.1.1 什么是数据？</h4><ul>
+<li>存储在内存中代表特定信息的“东西”，本质上是01字符串</li>
+<li>数据的特点：<ul>
+<li>可传递</li>
+<li>可运算</li>
+<li>可存储</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-2-什么是内存？"><a href="#2-1-2-什么是内存？" class="headerlink" title="2.1.2 什么是内存？"></a>2.1.2 什么是内存？</h4><ul>
+<li>内存条通电以后产生的可存储空间（临时的）</li>
+<li>内存的产生与死亡：内存条（电路板）&#x3D;&#x3D;&gt;通电&#x3D;&#x3D;&gt;产生内存&#x3D;&#x3D;&gt;存储数据&#x3D;&#x3D;&gt;程序运行，处理数据&#x3D;&#x3D;&gt;断电&#x3D;&#x3D;&gt;内存空间和数据消失</li>
+<li>内存分类：<ul>
+<li>栈：全局变量&#x2F;局部变量</li>
+<li>堆：对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-1-3-什么是变量？"><a href="#2-1-3-什么是变量？" class="headerlink" title="2.1.3 什么是变量？"></a>2.1.3 什么是变量？</h4><ul>
+<li>可变化的量，由变量名和变量值组成</li>
+<li>每个变量都对应一块小内存，变量名用来查找对应内存，变量值存放在内存中</li>
+</ul>
+<h4 id="2-2-1-内存、数据、变量三者的关系"><a href="#2-2-1-内存、数据、变量三者的关系" class="headerlink" title="2.2.1 内存、数据、变量三者的关系"></a>2.2.1 内存、数据、变量三者的关系</h4><ul>
+<li>内存是用来存储数据的空间</li>
+<li>变量是内存的标识</li>
+</ul>
+<h4 id="2-2-2-var-a-xxx，a中到底保存了什么？"><a href="#2-2-2-var-a-xxx，a中到底保存了什么？" class="headerlink" title="2.2.2 var a&#x3D;xxx，a中到底保存了什么？"></a>2.2.2 var a&#x3D;xxx，a中到底保存了什么？</h4><ul>
+<li>xxx是基本数据，那么a中保存的就是基本数据的值</li>
+<li>xxx是对象，那么a中保存的就是引用数据在内存中的地址值</li>
+<li>xxx是一个变量，保存的xxx内存的内容（基本数据&#x2F;地址值）</li>
+</ul>
+<h4 id="2-2-3-关于引用变量赋值问题"><a href="#2-2-3-关于引用变量赋值问题" class="headerlink" title="2.2.3 关于引用变量赋值问题"></a>2.2.3 关于引用变量赋值问题</h4><ul>
+<li>2个引用变量指向同一个对象，修改其中一个变量，另一个变量也会跟着改变</li>
+<li>2个引用变量指向不同的对象，修改其中一个变量，另一个变量不会跟着改变</li>
+</ul>
+<h4 id="2-3-1-js在调用函数传递变量参数的时候，是值传递还是参数传递？"><a href="#2-3-1-js在调用函数传递变量参数的时候，是值传递还是参数传递？" class="headerlink" title="2.3.1 js在调用函数传递变量参数的时候，是值传递还是参数传递？"></a>2.3.1 js在调用函数传递变量参数的时候，是值传递还是参数传递？</h4><ul>
+<li>值（基本&#x2F;地址值）传递</li>
+</ul>
+<h4 id="2-3-2-js引擎如何管理内存？"><a href="#2-3-2-js引擎如何管理内存？" class="headerlink" title="2.3.2 js引擎如何管理内存？"></a>2.3.2 js引擎如何管理内存？</h4><ul>
+<li><p>内存生命周期</p>
+<ul>
+<li>分配小的内存空间，得到他的使用权</li>
+<li>存储数据，可以反复进行操作</li>
+<li>释放小内存空间</li>
+</ul>
+</li>
+<li><p>释放内存</p>
+<ul>
+<li>局部变量：函数执行完毕，变量内存空间自动释放</li>
+<li>对象：成为垃圾对象&#x3D;&#x3D;&gt;垃圾回收期回收</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h2><h4 id="3-1-1-什么是对象？"><a href="#3-1-1-什么是对象？" class="headerlink" title="3.1.1 什么是对象？"></a>3.1.1 什么是对象？</h4><ul>
+<li>多个对象的封装体</li>
+<li>用来保存多个数据的容器</li>
+<li>一个对象代表显示中的一个事物</li>
+</ul>
+<h4 id="3-1-2-为什么要用对象？"><a href="#3-1-2-为什么要用对象？" class="headerlink" title="3.1.2 为什么要用对象？"></a>3.1.2 为什么要用对象？</h4><ul>
+<li>统一管理多个数据</li>
+</ul>
+<h4 id="3-1-3-对象的组成"><a href="#3-1-3-对象的组成" class="headerlink" title="3.1.3 对象的组成"></a>3.1.3 对象的组成</h4><ul>
+<li>属性：属性名（字符串）和属性值（任意类型）</li>
+<li>方法：一种特殊的方法（属性值是一个函数）</li>
+</ul>
+<h4 id="3-1-4-如何访问对象的内部数据？"><a href="#3-1-4-如何访问对象的内部数据？" class="headerlink" title="3.1.4 如何访问对象的内部数据？"></a>3.1.4 如何访问对象的内部数据？</h4><ul>
+<li>.属性名：访问对象的属性值，有时不能使用</li>
+<li>[“属性名”]：访问对象的属性值，任何情况通用</li>
+<li>对象.方法名()：调用对象的某个方法</li>
+</ul>
+<h4 id="3-2-1-什么时候必须使用-“属性名”-访问属性？"><a href="#3-2-1-什么时候必须使用-“属性名”-访问属性？" class="headerlink" title="3.2.1 什么时候必须使用[“属性名”]访问属性？"></a>3.2.1 什么时候必须使用[“属性名”]访问属性？</h4><ul>
+<li>属性名包含特殊字符</li>
+<li>属性名是变量</li>
+</ul>
+<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h2><h4 id="4-1-1-什么是函数？"><a href="#4-1-1-什么是函数？" class="headerlink" title="4.1.1 什么是函数？"></a>4.1.1 什么是函数？</h4><ul>
+<li>实现特定功能的n条语句的封装体</li>
+<li>只有函数是可以执行的，其他类型都不能执行</li>
+</ul>
+<h4 id="4-1-2-为什么要用函数？"><a href="#4-1-2-为什么要用函数？" class="headerlink" title="4.1.2 为什么要用函数？"></a>4.1.2 为什么要用函数？</h4><ul>
+<li>提高代码的复用性</li>
+<li>便于阅读交流</li>
+</ul>
+<h4 id="4-1-3-如何定义函数？"><a href="#4-1-3-如何定义函数？" class="headerlink" title="4.1.3 如何定义函数？"></a>4.1.3 如何定义函数？</h4><ul>
+<li>函数声明</li>
+<li>函数表达式</li>
+</ul>
+<h4 id="4-1-4-如何调用（执行）函数？"><a href="#4-1-4-如何调用（执行）函数？" class="headerlink" title="4.1.4 如何调用（执行）函数？"></a>4.1.4 如何调用（执行）函数？</h4><ul>
+<li>test（）：直接调用</li>
+<li>test.call（obj）：通过对象调用</li>
+<li>new test（）：new调用</li>
+<li>test.call&#x2F;apply（obj）：相当于obj.test(),临时让test成为obj的方法，进行调用</li>
+</ul>
+<h2 id="5-回调函数"><a href="#5-回调函数" class="headerlink" title="5.回调函数"></a>5.回调函数</h2><h4 id="5-1-1-什么函数才是回调函数？"><a href="#5-1-1-什么函数才是回调函数？" class="headerlink" title="5.1.1 什么函数才是回调函数？"></a>5.1.1 什么函数才是回调函数？</h4><ul>
+<li>编码者自己定义的函数</li>
+<li>编码者自己没有调用</li>
+<li>但是它（函数）最后执行</li>
+</ul>
+<h4 id="5-1-2-常见的回调函数有哪些？"><a href="#5-1-2-常见的回调函数有哪些？" class="headerlink" title="5.1.2 常见的回调函数有哪些？"></a>5.1.2 常见的回调函数有哪些？</h4><ul>
+<li>dom事件回调函数</li>
+<li>定时器回调函数</li>
+<li>ajax回调函数</li>
+<li>生命周期回调函数</li>
+</ul>
+<h2 id="6-IIFE"><a href="#6-IIFE" class="headerlink" title="6.IIFE"></a>6.IIFE</h2><h4 id="6-1-1-IIFE的理解？"><a href="#6-1-1-IIFE的理解？" class="headerlink" title="6.1.1 IIFE的理解？"></a>6.1.1 IIFE的理解？</h4><ul>
+<li>全称： Immediately Invoked Function Expression（立即调用的函数表达式）</li>
+</ul>
+<h4 id="6-1-2-IIFE的作用？"><a href="#6-1-2-IIFE的作用？" class="headerlink" title="6.1.2 IIFE的作用？"></a>6.1.2 IIFE的作用？</h4><ul>
+<li>隐藏实现</li>
+<li>不会污染全局命名空间</li>
+<li>用来编写js模块化代码</li>
+</ul>
+<h2 id="7-函数中的this"><a href="#7-函数中的this" class="headerlink" title="7.函数中的this"></a>7.函数中的this</h2><h4 id="7-1-1-this是什么？"><a href="#7-1-1-this是什么？" class="headerlink" title="7.1.1 this是什么？"></a>7.1.1 this是什么？</h4><ul>
+<li>任何函数本质上都是通过某个对象调用的，未指定对象时，this就是window</li>
+<li>所有函数内部都有一个this变量</li>
+<li>它的值是调用函数的当前对象</li>
+</ul>
+<h4 id="7-1-2-如何确定this的值？"><a href="#7-1-2-如何确定this的值？" class="headerlink" title="7.1.2 如何确定this的值？"></a>7.1.2 如何确定this的值？</h4><ul>
+<li>test（）：默认调用window</li>
+<li>test.call（obj）：obj调用</li>
+<li>new test()：新创建的对象</li>
+<li>p.test()：p调用</li>
+</ul>
+<h2 id="8-原型与原型链"><a href="#8-原型与原型链" class="headerlink" title="8.原型与原型链"></a>8.原型与原型链</h2><h4 id="8-1-1-函数的property属性图"><a href="#8-1-1-函数的property属性图" class="headerlink" title="8.1.1 函数的property属性图"></a>8.1.1 函数的property属性图</h4><ul>
+<li>每个函数都有一个prototype属性，它默认指向一个object空对象（即称为：原型对象）</li>
+<li>原型对象中有一个constructor属性，指向函数对象</li>
+</ul>
+<h4 id="8-1-2-给原型对象添加属性（一般都是方法）"><a href="#8-1-2-给原型对象添加属性（一般都是方法）" class="headerlink" title="8.1.2 给原型对象添加属性（一般都是方法）"></a>8.1.2 给原型对象添加属性（一般都是方法）</h4><ul>
+<li>作用：函数的所有实例对象自动拥有原型中的属性（方法）</li>
+</ul>
+<h4 id="8-2-1-显式原型与隐式原型"><a href="#8-2-1-显式原型与隐式原型" class="headerlink" title="8.2.1 显式原型与隐式原型"></a>8.2.1 显式原型与隐式原型</h4><ul>
+<li>每个函数function都有一个内部属性prototype，即显示原型</li>
+<li>每个实例对象都有一个__proto__属性，可称之为隐式原型</li>
+<li>对象的隐式原型的值为其对应构造函数的显性原型的值</li>
+<li>总结：<ul>
+<li>函数的prototype属性：在定义函数时自动添加的，默认值是一个空对象</li>
+<li>实例对象的__proto__属性：在创建实例对象时自动添加的，默认值为构造函数的prototype属性值</li>
+<li>程序员能直接操作显示原型，但不能直接操作隐式原型（ES6之前）</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-3-1-原型链"><a href="#8-3-1-原型链" class="headerlink" title="8.3.1 原型链"></a>8.3.1 原型链</h4><ul>
+<li>访问一个对象的属性时：<ul>
+<li>先在自身属性中查找，找到并返回</li>
+<li>如果没有找到，再沿__proto__这条链上不断查找，找到并返回</li>
+<li>如果还没有找到，返回undifined</li>
+</ul>
+</li>
+<li>别名：隐式原型链</li>
+<li>作用：查找对象的属性（方法）</li>
+<li>补充：<ul>
+<li>函数的显示原型指向的对象默认是空object实例对象（但是object不满足）</li>
+<li>所有函数都是Function的实例（包含Function）</li>
+<li>Object的原型对象是原型链尽头</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-3-2-原型链属性"><a href="#8-3-2-原型链属性" class="headerlink" title="8.3.2 原型链属性"></a>8.3.2 原型链属性</h4><ul>
+<li>读取对象的属性值：会自动到原型链上查找</li>
+<li>设置对象的属性值：不会查找原型链，如果当前对象没有此属性，直接添加此属性并设置其值</li>
+<li>方法一般定义在原型中，属性一般通过构造函数定义在对象本身上</li>
+</ul>
+<h2 id="9-执行上下文与执行上下文栈"><a href="#9-执行上下文与执行上下文栈" class="headerlink" title="9.执行上下文与执行上下文栈"></a>9.执行上下文与执行上下文栈</h2><h4 id="9-1-1-变量提升与函数提升"><a href="#9-1-1-变量提升与函数提升" class="headerlink" title="9.1.1 变量提升与函数提升"></a>9.1.1 变量提升与函数提升</h4><ul>
+<li>变量声明提升<ul>
+<li>通过var定义的变量，在定义语句之前就可以被访问到</li>
+<li>值：undefined</li>
+</ul>
+</li>
+<li>函数声明提升<ul>
+<li>通过function声明的函数，在之前就可以直接调用</li>
+<li>值：函数定义（对象）</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-2-1-执行上下文"><a href="#9-2-1-执行上下文" class="headerlink" title="9.2.1 执行上下文"></a>9.2.1 执行上下文</h4><ul>
+<li>代码分类：<ul>
+<li>全局代码</li>
+<li>函数（局部）代码</li>
+</ul>
+</li>
+<li>全局执行上下文<ul>
+<li>在执行全局代码前将window确定为全局执行上下文</li>
+<li>对全局数据进行预处理<ul>
+<li>var定义的全局变量&#x3D;&#x3D;&gt;undefined，添加为window的属性</li>
+<li>function定义的全局函数&#x3D;&#x3D;&gt;赋值（fun），添加为window的方法</li>
+<li>this&#x3D;&#x3D;&gt;赋值（window）</li>
+</ul>
+</li>
+<li>开始执行上下文</li>
+</ul>
+</li>
+<li>函数执行上下文<ul>
+<li>在调用函数，准备执行函数体之前，创造对应的函数执行上下文对象</li>
+<li>对局部数据进行预处理<ul>
+<li>形参变量&#x3D;&#x3D;&gt;赋值（实参）&#x3D;&#x3D;&gt;添加为执行上下文的属性</li>
+<li>arguements（伪数组）&#x3D;&#x3D;&gt;赋值（实参列表），添加为执行上下文的属性</li>
+<li>var定义的局部变量&#x3D;&#x3D;&gt;undefined，添加为执行上下文属性</li>
+<li>function声明的函数&#x3D;&#x3D;&gt;赋值（fun），添加为执行上下文的方法</li>
+<li>this&#x3D;&#x3D;&gt;赋值（调用函数的对象）</li>
+</ul>
+</li>
+<li>开始执行函数体代码</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-3-1-执行上下文栈"><a href="#9-3-1-执行上下文栈" class="headerlink" title="9.3.1 执行上下文栈"></a>9.3.1 执行上下文栈</h4><ul>
+<li>在全局代码执行前，JS引擎会创建一个栈来存储管理所有的执行上下文对象</li>
+<li>在全局执行上下文（window）确定后，将其添加到栈中（即压栈）</li>
+<li>在函数执行上下文创建之后，将其添加到栈中</li>
+<li>在当前函数执行完成后，将栈顶的对象移除栈（即出栈）</li>
+<li>当所有的代码执行完成后，栈只剩下window对象</li>
+</ul>
+<h2 id="10-作用域与作用域链"><a href="#10-作用域与作用域链" class="headerlink" title="10.作用域与作用域链"></a>10.作用域与作用域链</h2><h4 id="10-1-1-作用域的理解"><a href="#10-1-1-作用域的理解" class="headerlink" title="10.1.1 作用域的理解"></a>10.1.1 作用域的理解</h4><ul>
+<li>就是一块“地盘”，一个代码段所在的区域</li>
+<li>他是静态的（相对于上下文对象），在编写代码时就确定了</li>
+</ul>
+<h4 id="10-1-2-作用域的分类"><a href="#10-1-2-作用域的分类" class="headerlink" title="10.1.2 作用域的分类"></a>10.1.2 作用域的分类</h4><ul>
+<li>全局作用域</li>
+<li>函数作用域</li>
+<li>无块级作用域（ES6新增块作用域）</li>
+</ul>
+<h4 id="10-1-3-作用域的作用"><a href="#10-1-3-作用域的作用" class="headerlink" title="10.1.3 作用域的作用"></a>10.1.3 作用域的作用</h4><ul>
+<li>隔离变量，不同作用域下同名变量不会有冲突</li>
+</ul>
+<h4 id="10-2-1-作用域与执行上下文的区别1"><a href="#10-2-1-作用域与执行上下文的区别1" class="headerlink" title="10.2.1 作用域与执行上下文的区别1"></a>10.2.1 作用域与执行上下文的区别1</h4><ul>
+<li>全局作用域之外，每个函数都会创建自己的作用域，作用域在函数定义时就已经确定了，而不是在函数调用时</li>
+<li>全局执行上下文环境数字哎全局作用域确定之后，JS代码马上执行之前创建</li>
+<li>函数执行上下文环境是在调用函数时，函数体代码执行之前创建</li>
+</ul>
+<h4 id="10-2-2-作用域与执行上下文的区别2"><a href="#10-2-2-作用域与执行上下文的区别2" class="headerlink" title="10.2.2 作用域与执行上下文的区别2"></a>10.2.2 作用域与执行上下文的区别2</h4><ul>
+<li>作用域是静态的，函数定义好了就一直存在，不再变化</li>
+<li>上下文是动态的，函数调用时才创建，函数执行完毕后销毁</li>
+</ul>
+<h4 id="10-2-3-作用域与执行上下文的联系"><a href="#10-2-3-作用域与执行上下文的联系" class="headerlink" title="10.2.3 作用域与执行上下文的联系"></a>10.2.3 作用域与执行上下文的联系</h4><ul>
+<li>上下文环境（对象）是从属于所在的作用域</li>
+<li>全局上下文环境&#x3D;&#x3D;&gt;全局作用域</li>
+<li>函数上下文环境&#x3D;&#x3D;&gt;对应的函数作用域</li>
+</ul>
+<h2 id="11-闭包"><a href="#11-闭包" class="headerlink" title="11.闭包"></a>11.闭包</h2><h4 id="11-1-1-如何产生闭包？"><a href="#11-1-1-如何产生闭包？" class="headerlink" title="11.1.1 如何产生闭包？"></a>11.1.1 如何产生闭包？</h4><ul>
+<li>当一个嵌套的内部（子）函数引用了嵌套的外部（父）函数的变量时，就产生了闭包</li>
+</ul>
+<h4 id="11-1-2-闭包到底是什么？"><a href="#11-1-2-闭包到底是什么？" class="headerlink" title="11.1.2 闭包到底是什么？"></a>11.1.2 闭包到底是什么？</h4><ul>
+<li>使用chrome进行查看</li>
+<li>理解一： 闭包是嵌套的内部函数（绝大部分人认为）</li>
+<li>理解二： 包含被引用变量（函数）的对象（极少数人认为）</li>
+<li>注意： 闭包存在于嵌套的内部函数之中</li>
+</ul>
+<h4 id="11-1-3-产生闭包的条件"><a href="#11-1-3-产生闭包的条件" class="headerlink" title="11.1.3 产生闭包的条件"></a>11.1.3 产生闭包的条件</h4><ul>
+<li>函数嵌套 </li>
+<li>内部函数引用了外部函数的数据（变量&#x2F;函数）</li>
+</ul>
+<h4 id="11-2-1-常见的闭包"><a href="#11-2-1-常见的闭包" class="headerlink" title="11.2.1 常见的闭包"></a>11.2.1 常见的闭包</h4><ul>
+<li>将函数作为另外一个函数的返回值</li>
+<li>将函数作为实参残敌给另一个函数调用</li>
+</ul>
+<h4 id="11-3-1-闭包的作用"><a href="#11-3-1-闭包的作用" class="headerlink" title="11.3.1 闭包的作用"></a>11.3.1 闭包的作用</h4><ul>
+<li>使用函数内部的变量在函数执行完后，仍然存活在内存中（延长了局部变量的生命周期）</li>
+<li>让函数外部可以操作（读写）到函数内部的数据（变量&#x2F;函数）</li>
+</ul>
+<h4 id="11-3-2-函数执行完成后，函数声明的局部变量是否存在？"><a href="#11-3-2-函数执行完成后，函数声明的局部变量是否存在？" class="headerlink" title="11.3.2 函数执行完成后，函数声明的局部变量是否存在？"></a>11.3.2 函数执行完成后，函数声明的局部变量是否存在？</h4><ul>
+<li>一般不存在，存在于闭包中的变量才可能存在</li>
+</ul>
+<h4 id="11-3-3-（闭包）在函数外部能够直接访问函数内部的局部变量吗？"><a href="#11-3-3-（闭包）在函数外部能够直接访问函数内部的局部变量吗？" class="headerlink" title="11.3.3 （闭包）在函数外部能够直接访问函数内部的局部变量吗？"></a>11.3.3 （闭包）在函数外部能够直接访问函数内部的局部变量吗？</h4><ul>
+<li>不能，但是我们可以通过闭包来让外部操作它</li>
+</ul>
+<h4 id="11-4-1-闭包的生命周期"><a href="#11-4-1-闭包的生命周期" class="headerlink" title="11.4.1 闭包的生命周期"></a>11.4.1 闭包的生命周期</h4><ul>
+<li>产生：在嵌套函数定义执行完成时就已经产生了（不是在调用时才产生）</li>
+<li>死亡：在嵌套的函数内部函数成为垃圾对象时</li>
+</ul>
+<h4 id="11-5-1-闭包的应用"><a href="#11-5-1-闭包的应用" class="headerlink" title="11.5.1 闭包的应用"></a>11.5.1 闭包的应用</h4><ul>
+<li>定义JS模块：<ul>
+<li>具有特定功能的JS文件</li>
+<li>将所有数据和功能都封装在一个函数内部（私有）</li>
+<li>只向外暴露一个包含n个方法的对象或函数</li>
+<li>模块的使用者，只需要通过模块暴露的对象调用方法来实现相应的功能</li>
+</ul>
+</li>
+</ul>
+<h4 id="11-6-1-闭包的缺点"><a href="#11-6-1-闭包的缺点" class="headerlink" title="11.6.1 闭包的缺点"></a>11.6.1 闭包的缺点</h4><ul>
+<li>缺点<ul>
+<li>函数执行完成后，函数内的局部变量没有释放，占用内存的时间会变长</li>
+<li>容易造成内存泄露</li>
+</ul>
+</li>
+<li>解决方案<ul>
+<li>能不用闭包就不用</li>
+<li>及时释放</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-对象"><a href="#12-对象" class="headerlink" title="12.对象"></a>12.对象</h2><h4 id="12-1-1-对象构造模式"><a href="#12-1-1-对象构造模式" class="headerlink" title="12.1.1 对象构造模式"></a>12.1.1 对象构造模式</h4><ul>
+<li>Object构造函数模式：<ul>
+<li>套路： 先创建空Object对象，再添加属性和方法</li>
+<li>适用场景： 起始时不确定对象内部数据</li>
+<li>问题： 语句太多</li>
+</ul>
+</li>
+<li>对象字面量模式：<ul>
+<li>套路： 使用{}创建对象，提示指定属性和方法</li>
+<li>适用场景： 起始确定对象内部数据</li>
+<li>问题： 如果创建多个对象，代码重复</li>
+</ul>
+</li>
+<li>工厂模式：<ul>
+<li>套路： 通过工厂函数（返回一个对象的函数）动态创建对象并返回</li>
+<li>适用场景： 需要创建多个对象</li>
+<li>问题： 没有一个具体的类型，都是Object类型</li>
+</ul>
+</li>
+<li>自定义构造函数模式：<ul>
+<li>套路： 通过自定义构造函数，通过new创建对象</li>
+<li>适用场景： 需要创建多个类型确定的对象</li>
+<li>问题： 每个对象都有相同的数据，代码冗余</li>
+</ul>
+</li>
+<li>组合模式（构造函数+原型）：<ul>
+<li>套路： 自定义构造函数，属性在函数中初始化，原型对象负责添加方法</li>
+<li>适用场景： 需要创建多个类型确定的对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-2-1-原型链继承"><a href="#12-2-1-原型链继承" class="headerlink" title="12.2.1 原型链继承"></a>12.2.1 原型链继承</h4><ul>
+<li>套路：<ul>
+<li>定义父类型构造函数</li>
+<li>给父类型的原型添加方法</li>
+<li>定义子类型构造函数</li>
+<li>子类型构造函数的原型指向父类型构造函数的实例</li>
+<li>将子类型的原型的构造属性设置为子类型</li>
+<li>给子类型原型添加方法</li>
+<li>创建子类型的对象</li>
+</ul>
+</li>
+<li>关键：<ul>
+<li>子类型构造函数的原型指向父类型构造函数的实例</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-2-2-借用构造函数继承"><a href="#12-2-2-借用构造函数继承" class="headerlink" title="12.2.2 借用构造函数继承"></a>12.2.2 借用构造函数继承</h4><ul>
+<li>套路：<ul>
+<li>定义父类型构造函数</li>
+<li>定义子类型构造函数</li>
+<li>在子类型构造函数中调用父类型构造函数</li>
+</ul>
+</li>
+<li>关键：<ul>
+<li>子类型构造函数中通用super（）调用父类型构造函数</li>
+</ul>
+</li>
+</ul>
+<h4 id="12-2-3-组合继承"><a href="#12-2-3-组合继承" class="headerlink" title="12.2.3 组合继承"></a>12.2.3 组合继承</h4><ul>
+<li>原型链+借用构造函数：<ul>
+<li>利用原型链实现对父类型对象的方法继承</li>
+<li>利用super（）调用父类型构造函数初始化相同属性</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JS_high</div>
+      <div>http://example.com/2024/10/19/JS-high/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sad-master</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/19/ES6/" title="ES6">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ES6</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/18/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lUINc1fFAA5pNOOgR8XkRHyy-gzGzoHsz","appKey":"Qckx6EOeKbmUAGqSsKBuoep7","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量
+        <span id="busuanzi_value_site_pv"></span>
+        次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数
+        <span id="busuanzi_value_site_uv"></span>
+        次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
